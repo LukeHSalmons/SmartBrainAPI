@@ -8,14 +8,13 @@ const register = require('./controllers/register');
 const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0
 
 const db = knex({
     client: 'pg',
     connection: {
-      host : '127.0.0.1', //localhost
-      user : 'lukesalmons', //add your user name for the database here
-      password : '', //add your correct password in here
-      database : 'smart-brain' //add your database name you created here
+        connectionString: process.env.DATABASE_URL,
+        ssl:true
     }
 });
 
